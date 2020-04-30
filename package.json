@@ -1,0 +1,14 @@
+{
+  "name": "rainshot",
+  "version": "1.0.0",
+  "dependencies": {
+    "chrome-aws-lambda": "~2.1.1",
+    "puppeteer-core": "~2.1.1"
+  },
+  "devDependencies": {
+    "chrome-finder": "https://github.com/simplemerchant/chrome-finder.git"
+  },
+  "scripts": {
+    "start": "now dev"
+  }
+}

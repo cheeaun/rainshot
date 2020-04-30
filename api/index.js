@@ -6,7 +6,6 @@ const isDev = process.env.NOW_REGION === 'dev1';
 let page;
 
 async function getBrowserPage() {
-  console.log('getBrowserPage', findChrome());
   try {
     const browser = await chrome.puppeteer.launch({
       ignoreHTTPSErrors: true,

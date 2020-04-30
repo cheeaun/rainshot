@@ -47,6 +47,11 @@ function getMinutes(timestamp) {
 }
 
 async function handler(req, res) {
+  if (/favicon/i.test(req.url)) {
+    res.status(204).send();
+    return;
+  }
+
   try {
     if (!page) page = await getBrowserPage();
 

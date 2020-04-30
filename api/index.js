@@ -53,6 +53,7 @@ async function handler(req, res) {
   }
 
   try {
+    console.time('Execution time');
     if (!page) page = await getBrowserPage();
 
     await page.waitForFunction(
@@ -98,6 +99,7 @@ async function handler(req, res) {
     });
     res.setHeader('Content-Type', 'image/jpeg');
     res.end(imageBuffer);
+    console.timeEnd('Execution time');
   } catch (e) {
     console.error(e);
   }

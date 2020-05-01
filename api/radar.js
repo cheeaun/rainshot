@@ -101,11 +101,6 @@ async function getBrowserPage() {
   }
 }
 
-function getMinutes(timestamp) {
-  // Don't care about AM/PM at all
-  const [hour, min] = timestamp.split(':');
-  return hour * 60 + min;
-}
 function minusDts(time1, time2) {
   try {
     const date1 = new Date(`01/01/01 ${time1}`);
@@ -162,9 +157,3 @@ async function handler(req, res) {
 }
 
 module.exports = handler;
-
-// if (isDev) {
-//   const PORT = process.env.PORT || 13463;
-//   const listen = () => console.log(`Listening on ${PORT}...`);
-//   createServer(handler).listen(PORT, listen);
-// }

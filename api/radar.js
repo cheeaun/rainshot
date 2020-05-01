@@ -142,7 +142,7 @@ async function handler(req, res) {
       minute: '2-digit',
       hour12: false,
     });
-    const minutes = 5 - minusDts(localTime, data.datetime);
+    const minutes = 6 - minusDts(localTime, data.datetime);
     if (minutes <= 0) {
       res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     } else {

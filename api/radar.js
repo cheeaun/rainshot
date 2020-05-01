@@ -144,7 +144,7 @@ async function handler(req, res) {
     });
     const minutes = 5 - minusDts(localTime, data.datetime);
     if (minutes <= 0) {
-      res.setHeader('Cache-Control', `s-maxage=30, stale-while-revalidate`);
+      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
     } else {
       res.setHeader('Cache-Control', `public, max-age=${minutes * 60}`);
     }

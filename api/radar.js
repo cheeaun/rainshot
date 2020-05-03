@@ -68,7 +68,7 @@ async function getAllData() {
   const { id, radar, width, height } = rainareaBody;
   const datetime = timeID(id);
 
-  return { obs, datetime, radar: radar.trimEnd(), width, height };
+  return { obs, datetime, id, radar: radar.trimEnd(), width, height };
 }
 
 const localChrome = isDev ? require('chrome-finder')() : null;
@@ -121,6 +121,8 @@ async function handler(req, res) {
     return;
   }
 
+  const queryDt = req.query.dt;
+
   try {
     console.time('V2 Execution time');
     const dataPromise = getAllData();
@@ -142,11 +144,15 @@ async function handler(req, res) {
       minute: '2-digit',
       hour12: false,
     });
-    const minutes = 6 - minusDts(localTime, data.datetime);
-    if (minutes <= 0) {
-      res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+    if (data.id === queryDt) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else {
-      res.setHeader('Cache-Control', `public, max-age=${minutes * 60}`);
+      const minutes = 6 - minusDts(localTime, data.datetime);
+      if (minutes <= 0) {
+        res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
+      } else {
+        res.setHeader('Cache-Control', `public, max-age=${minutes * 60}`);
+      }
     }
 
     res.end(imageBuffer);

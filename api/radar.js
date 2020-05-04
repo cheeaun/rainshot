@@ -138,15 +138,15 @@ async function handler(req, res) {
     });
     res.setHeader('Content-Type', 'image/jpeg');
 
-    const localTime = new Date().toLocaleTimeString('en-US', {
-      timeZone: 'Asia/Singapore',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    });
     if (data.id === queryDt) {
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     } else {
+      const localTime = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Singapore',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+      });
       const minutes = 6 - minusDts(localTime, data.datetime);
       if (minutes <= 0) {
         res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');

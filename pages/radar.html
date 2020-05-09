@@ -30,10 +30,16 @@ html, body {
 #rain {
   opacity: .5;
 }
+#obs .t-outline {
+  font-size: 13px;
+  text-anchor: middle;
+  dominant-baseline: central;
+  stroke: black;
+  stroke-width: 3px;
+}
 #obs .t {
   fill: rgba(255, 255, 0, .8);
-  font-size: 12px;
-  text-shadow: 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000, 0 0 5px #000;
+  font-size: 13px;
   text-anchor: middle;
   dominant-baseline: central;
 }
@@ -41,9 +47,10 @@ html, body {
   opacity: .5;
 }
 #datetime {
-  font-size: 14px;
-  fill: lightskyblue;
-  text-shadow: 0 0 4px #000, 0 0 4px #000, 0 0 3px #000, 0 0 3px #000, 0 0 2px #000, 0 0 2px #000, 0 0 10px #fff;
+  text-anchor: end;
+  font-size: 16px;
+  fill: white;
+  text-shadow: 0 0 10px rgba(255,255,255,.5);
 }
 canvas {
   opacity: 0;
@@ -63,7 +70,7 @@ canvas {
   <image id="rain" width="400" height="226" preserveAspectRatio="none"/>
   <use class="sg top" xlink:href="#sg"/>
   <g id="obs">{{obs}}</g>
-  <text id="datetime" x="16" y="24">{{datetime}}</text>
+  <text id="datetime" x="384" y="210">{{datetime}}</text>
 </svg>
 <canvas id="rainarea"></canvas>
 <script>

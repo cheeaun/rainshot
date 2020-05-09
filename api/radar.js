@@ -54,7 +54,10 @@ async function getAllData() {
     const { lng, lat, temp_celcius, wind_direction } = f;
     const pos = calcPos(lng, lat);
     if (temp_celcius) {
-      temps += `<text class="t" x="${pos.x}" y="${pos.y}">${temp_celcius}°</text>`;
+      temps += `
+        <text class="t-outline" x="${pos.x}" y="${pos.y}">${temp_celcius}°</text>
+        <text class="t" x="${pos.x}" y="${pos.y}">${temp_celcius}°</text>
+      `;
     }
     if (wind_direction) {
       winds += `<use xlink:href="#w" class="w" x="${pos.x - 20}" y="${

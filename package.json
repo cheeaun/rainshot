@@ -2,9 +2,9 @@
   "name": "rainshot",
   "version": "1.0.0",
   "dependencies": {
-    "chrome-aws-lambda": "~2.1.1",
+    "chrome-aws-lambda": "~3.0.4",
     "phin": "~3.4.1",
-    "puppeteer-core": "~2.1.1"
+    "puppeteer-core": "~3.0.4"
   },
   "devDependencies": {
     "chrome-finder": "https://github.com/simplemerchant/chrome-finder.git"

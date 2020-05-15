@@ -150,7 +150,7 @@ async function handler(req, res) {
         minute: '2-digit',
       });
       const minutes = 6 - minusDts(localTime, data.datetime);
-      if (minutes <= 0) {
+      if (minutes <= 0 || minutes > 6) {
         res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
       } else {
         res.setHeader('Cache-Control', `public, max-age=${minutes * 60}`);

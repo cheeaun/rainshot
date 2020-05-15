@@ -148,7 +148,6 @@ async function handler(req, res) {
         timeZone: 'Asia/Singapore',
         hour: '2-digit',
         minute: '2-digit',
-        hour12: false,
       });
       const minutes = 6 - minusDts(localTime, data.datetime);
       if (minutes <= 0) {

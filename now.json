@@ -3,16 +3,5 @@
   "version": 2,
   "regions": ["sin"],
   "public": true,
-  "rewrites": [{ "source": "(.*)", "destination": "api/index" }],
-  "headers": [
-    {
-      "source": "/",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=60"
-        }
-      ]
-    }
-  ]
+  "rewrites": [{ "source": "(.*)", "destination": "api/radar" }]
 }

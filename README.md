@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- Install [now CLI](https://vercel.com/download)
+- Install [Vercel CLI](https://vercel.com/download)
 - Checkout this repo
 - Run `npm i`.
 - Run `npm start`.

@@ -10,6 +10,6 @@
     "chrome-finder": "https://github.com/simplemerchant/chrome-finder.git"
   },
   "scripts": {
-    "start": "now dev"
+    "start": "vercel dev"
   }
 }

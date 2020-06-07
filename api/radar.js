@@ -127,7 +127,7 @@ async function handler(req, res) {
   const queryDt = req.query.dt;
 
   try {
-    console.time('V2 Execution time');
+    console.time('V1 Execution time');
     const dataPromise = getAllData();
     if (!page) page = await getBrowserPage();
 
@@ -158,7 +158,7 @@ async function handler(req, res) {
     }
 
     res.end(imageBuffer);
-    console.timeEnd('V2 Execution time');
+    console.timeEnd('V1 Execution time');
   } catch (e) {
     console.error(e);
   }

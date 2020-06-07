@@ -89,7 +89,7 @@ const intensityColors = [
 ];
 
 const contour = contours()
-  .thresholds([5, 20, 30, 40, 50, 60, 70, 80, 85, 90, 95, 97.5])
+  .thresholds([4, 10, 20, 30, 40, 50, 60, 70, 80, 85, 90, 95, 97.5])
   .smooth(false);
 const svgPath = geoPath();
 function convertRadar2SVG(radar, width, height) {

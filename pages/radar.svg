@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 226">
-<style>
-#datetime {
-  font-family: sans-serif;
-  font-weight: bold;
-  text-anchor: end;
-  font-size: 16px;
-  fill: white;
-}
-#datetime-shadow {
-  font-family: sans-serif;
-  font-weight: bold;
-  text-anchor: end;
-  font-size: 16px;
-  fill: white;
-  stroke: rgba(255, 255, 255, .25);
-  stroke-width: 3px;
-}
-</style>
   <rect width="400" height="226" fill="#343332" />
   <defs>
     <svg id="sg" width="400" height="226" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 452">
@@ -32,7 +14,6 @@
     {{radarSVG}}
   </svg>
   <use xlink:href="#sg" opacity="0.6"/>
-  <g id="obs">{{obs}}</g>
-  <text id="datetime-shadow" x="384" y="210">{{datetime}}</text>
-  <text id="datetime" x="384" y="210">{{datetime}}</text>
+  {{obs}}
+  {{datetimePath}}
 </svg>

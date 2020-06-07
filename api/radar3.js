@@ -5,6 +5,10 @@ const p = require('phin');
 const { contours } = require('d3-contour');
 const { geoPath } = require('d3-geo');
 const sharp = require('sharp');
+const TextToSVG = require('text-to-svg');
+const textToSVG = TextToSVG.loadSync(
+  path.join(__dirname, '../fonts/OpenSans-Bold.ttf'),
+);
 
 const lowerLat = 1.156,
   upperLat = 1.475,
@@ -107,23 +111,6 @@ function convertRadar2SVG(radar, width, height) {
   return svg;
 }
 
-const styles = {
-  textOutline: `font-size: 13px;
-    font-family: sans-serif;
-    font-weight: bold;
-    text-anchor: middle;
-    dominant-baseline: central;
-    fill: black;
-    stroke: black;
-    stroke-width: 3px;`,
-  text: `fill: yellow;
-    font-family: sans-serif;
-    font-size: 13px;
-    font-weight: bold;
-    text-anchor: middle;
-    dominant-baseline: central;`,
-};
-
 async function getAllData() {
   const obsFetch = p({
     url: 'https://api.checkweather.sg/v2/observations',
@@ -141,9 +128,15 @@ async function getAllData() {
     const { lng, lat, temp_celcius, wind_direction } = f;
     const pos = calcPos(lng, lat);
     if (temp_celcius) {
+      const tempD = textToSVG.getD(temp_celcius + '°', {
+        x: pos.x,
+        y: pos.y,
+        fontSize: 13,
+        anchor: 'center middle',
+      });
       temps += `
-        <text class="t-outline" x="${pos.x}" y="${pos.y}" style="${styles.textOutline}">${temp_celcius}°</text>
-        <text class="t" x="${pos.x}" y="${pos.y}" style="${styles.text}">${temp_celcius}°</text>
+        <path d="${tempD}" stroke="black" stroke-width="3"/>
+        <path d="${tempD}" fill="rgba(255, 255, 0, .8)"/>
       `;
     }
     if (wind_direction) {
@@ -159,10 +152,30 @@ async function getAllData() {
   const { body: rainareaBody } = await rainareaFetch;
   const { id, radar, width, height } = rainareaBody;
   const datetime = timeID(id);
+  const datetimePath = textToSVG.getPath(datetime, {
+    x: 384,
+    y: 210,
+    fontSize: 16,
+    anchor: 'right baseline',
+    attributes: {
+      fill: 'white',
+      stroke: 'rgba(255, 255, 255, .25)',
+      'stroke-width': 3,
+    },
+  });
 
   const radarSVG = convertRadar2SVG(radar, width, height);
 
-  return { obs, datetime, id, radar: radar.trimEnd(), width, height, radarSVG };
+  return {
+    obs,
+    datetime,
+    datetimePath,
+    id,
+    radar: radar.trimEnd(),
+    width,
+    height,
+    radarSVG,
+  };
 }
 
 function minusDts(time1, time2) {

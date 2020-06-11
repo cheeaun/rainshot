@@ -3,5 +3,5 @@
   "version": 2,
   "regions": ["sin"],
   "public": true,
-  "rewrites": [{ "source": "(.*)", "destination": "api/radar" }]
+  "rewrites": [{ "source": "(.*)", "destination": "api/radar3" }]
 }

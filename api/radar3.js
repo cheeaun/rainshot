@@ -104,8 +104,7 @@ function convertRadar2SVG(radar, width, height) {
     if (intensity && d) {
       const fill =
         intensityColors[Math.round((con.value / 100) * intensityColors.length)];
-      const opacity = intensity > 90 ? 1 : 0.4;
-      svg += `<path d="${d}" fill="${fill}" fill-opacity="${opacity}" />`;
+      svg += `<path d="${d}" fill="${fill}" />`;
     }
   }
   return svg;

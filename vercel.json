@@ -1,5 +1,4 @@
 {
-  "alias": ["rainshot.vercel.app"],
   "version": 2,
   "regions": ["sin"],
   "public": true,

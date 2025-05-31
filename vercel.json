@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "regions": ["sin"],
+  "regions": ["sin1"],
   "public": true,
   "rewrites": [{ "source": "(.*)", "destination": "api/radar3" }]
 }

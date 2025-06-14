@@ -110,15 +110,38 @@ function convertRadar2SVG(radar, width, height) {
   return svg;
 }
 
+async function fetchWithFallback(newUrl, oldUrl, options = {}) {
+  try {
+    // Try new API first
+    const response = await p({
+      url: newUrl,
+      parse: 'json',
+      timeout: 2000,
+      ...options,
+    });
+    return response;
+  } catch (error) {
+    console.warn(`New API failed (${newUrl}), falling back to old API:`, error.message);
+    // Fallback to old API
+    const response = await p({
+      url: oldUrl,
+      parse: 'json',
+      timeout: 2000,
+      ...options,
+    });
+    return response;
+  }
+}
+
 async function getAllData() {
-  const obsFetch = p({
-    url: 'https://api.checkweather.sg/v2/observations',
-    parse: 'json',
-  });
-  const rainareaFetch = p({
-    url: 'https://api.checkweather.sg/v2/rainarea',
-    parse: 'json',
-  });
+  const obsFetch = fetchWithFallback(
+    'https://api2.checkweather.sg/v1/observations',
+    'https://api.checkweather.sg/v2/observations'
+  );
+  const rainareaFetch = fetchWithFallback(
+    'https://api2.checkweather.sg/v1/rainarea',
+    'https://api.checkweather.sg/v2/rainarea'
+  );
 
   const { body: obsBody } = await obsFetch;
   let temps = '',
